@@ -1,0 +1,18 @@
+#:import SuccessSnackbar components.success_snackbar.success_snackbar.SuccessSnackbar
+
+<SuccessSnackbar>:
+    MDIcon:
+        pos_hint: {'center_y': .5}
+        icon: 'check-circle-outline'
+        theme_text_color: "Custom"
+        text_color: '#60cd2c'
+
+    MDLabel:
+        id: text_bar
+        size_hint_y: None
+        height: self.texture_size[1]
+        text: root.text
+        font_name: 'fonts/Helvetica'
+        theme_text_color: 'Custom'
+        text_color: (0, 0, 0)
+        pos_hint: {'center_y': .5}

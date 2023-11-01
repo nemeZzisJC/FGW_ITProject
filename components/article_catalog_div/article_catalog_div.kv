@@ -1,0 +1,105 @@
+#:import ArticleCatalogDiv components.article_catalog_div.article_catalog_div.ArticleCatalogDiv
+
+# A class responsible for showing an article on catalog screen
+<ArticleCatalogDiv>:
+    id: article_div
+    ripple_behavior: True
+    size_hint_x: 0.95
+    size_hint_y: None
+    height: app.get_window_height() * 0.55 if root.comment else app.get_window_height() * 0.35
+    pos_hint: {'center_x': 0.5}
+
+    MDRelativeLayout:
+        size_hint: 1, 1
+
+        FitImage:
+            size_hint_y: 0.5
+            source: root.image
+            radius: [10, 10, 0, 0]
+            pos_hint: {'top': 1}
+
+        MDBoxLayout:
+            size_hint_y: 0.5
+            pos_hint: {'top': 1}
+            radius: [10, 10, 0, 0]
+
+            canvas.before:
+                Color:
+                    rgba: 0.1, 0.1, 0.1, 0.8
+                Line:
+                    width: 0.5
+                    rounded_rectangle: self.x, self.y, self.width, self.height, 10, 10, 0, 0
+
+        MDRelativeLayout:
+            id: text_div
+            size_hint_y: 0.5
+            pos_hint: {'top': 0.5}
+            radius: [0, 0, 10, 10]
+
+            MDLabel:
+                id: article_source
+                size_hint_x: 0.6
+                pos_hint: {'center_y': 0.9}
+                pos: (text_div.x + text_div.width * 0.05, 0)
+                adaptive_height: True
+                halign: 'left'
+                text: root.source
+                font_size: '13sp'
+                font_name: 'fonts/Helvetica'
+# '#D8D8D8'
+            MDLabel:
+                id: author_label
+                adaptive_size: True
+                pos: (text_div.x + text_div.width * 0.05, article_source.y - 20)
+                text: root.author
+                font_size: '15sp'
+                font_name: 'fonts/Helvetica-light'
+
+            MDLabel:
+                id: devider
+                adaptive_size: True
+                pos: (author_label.x + author_label.width + 4, article_source.y - 20)
+                text: '|'
+                font_size: '15sp'
+                font_name: 'fonts/Helvetica-light'
+
+            MDLabel:
+                adaptive_size: True
+                pos: (devider.x + devider.width + 4, article_source.y - 20)
+                text: root.date
+                font_size: '15sp'
+                font_name: 'fonts/Helvetica-light'
+
+            MDLabel:
+                id: article_heading
+                size_hint_x: 0.9
+                pos: (text_div.x + text_div.width * 0.05, author_label.y - self.height - 25)
+                adaptive_height: True
+                halign: 'left'
+                text: root.heading
+                font_size: '20sp'
+                line_height: 1.2
+                font_name: 'fonts/Helvetica'
+
+            MDLabel:
+                size_hint_x: 0.9
+                pos: (text_div.x + text_div.width * 0.05, article_heading.y - self.height - 15)
+                adaptive_height: True
+                halign: 'left'
+                text: root.comment
+                font_size: '16sp'
+                line_height: 1.2
+                font_name: 'fonts/Helvetica'
+
+        # border for the text section
+        MDBoxLayout:
+            size_hint_y: 0.5
+            pos_hint: {'top': 0.5}
+            radius: [0, 0, 10, 10]
+
+            canvas.before:
+                Color:
+                    rgba: 0.1, 0.1, 0.1, 0.8
+                Line:
+                    width: 0.5
+                    rounded_rectangle: self.x, self.y, self.width, self.height, 0, 0, 10, 10

@@ -1,0 +1,46 @@
+#:import DialogCreateFolder components.dialog_create_folder.dialog_create_folder.DialogCreateFolder
+#:import DialogCreateFolderContent components.dialog_create_folder.dialog_create_folder.DialogCreateFolderContent
+
+<DialogCreateFolder>:
+    title: 'Name folder'
+    auto_dismiss: False
+
+<DialogCreateFolderContent>:
+    orientation: 'vertical'
+    adaptive_height: True
+    pos_hint: {'top': 1}
+    spacing: '10dp'
+    padding: [0, 0, 0, 40]
+
+    MDLabel:
+        text: 'Path to folder: ' + root.path_to_folder
+        adaptive_height: True
+        font_name: 'fonts/Helvetica-Bold'
+        font_size: '18sp'
+        padding: [0, 0, 0, 10]
+
+    MDLabel:
+        text: 'Please name your folder:'
+        adaptive_height: True
+        font_name: 'fonts/Helvetica'
+
+    MDBoxLayout:
+        adaptive_height: True
+
+        canvas.before:
+            Color:
+                rgba: 0, 0, 0, 1
+            Line:
+                width: 1
+                rounded_rectangle: self.x, self.y, self.width, self.height, 0, 0, 0, 0
+
+        TextInput:
+            id: folder_name
+            background_color: (0, 0, 0, 0)
+            cursor_color: (0, 0, 0, 1)
+            size_hint: (1, None)
+            height: '35sp'
+            mode: 'rectangle'
+            hint_text: 'name_of_your_folder'
+            font_name: 'fonts/Helvetica'
+            font_size: '16sp'
