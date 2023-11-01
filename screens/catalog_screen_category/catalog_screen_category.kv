@@ -1,0 +1,117 @@
+#:import CatalogCategory screens.catalog_screen_category.catalog_screen_category.CatalogCategory
+#:import ArticleCatalogDiv screens.catalog_screen_category.catalog_screen_category.ArticleCatalogDiv
+
+<CatalogCategory>:
+    name: 'catalog_screen_category'
+
+    MDCard:
+        radius: 20
+        ripple_behavior: True
+        size_hint_x: 0.85
+        size_hint_y: 0.3
+        pos_hint: {'center_x': 0.5, 'center_y': 0.83}
+        on_release: root.transition_to_search_catalog('science')
+
+        MDRelativeLayout:
+            radius: 20
+
+            FitImage:
+                radius: 20
+                source: 'https://img.freepik.com/free-vector/scientists-lab-vaccine-concept_23-2148548241.jpg?w=1380&t=st=1693683660~exp=1693684260~hmac=95872777a4b9fcfa758a68686fb834676fba645325927f7a6d4b42e7ec300110'
+
+            MDRelativeLayout:
+                radius: [0, 0, 20, 20]
+                size_hint_y: 0.2
+                pos_hint: {'top': 0.2}
+                md_bg_color: 'white'
+                
+                MDLabel:
+                    text: "SCIENCE"
+                    pos_hint: {'x': 0.05}
+                    font_size: '17sp'
+                    font_name: 'fonts/Helvetica'
+                    theme_text_color: 'Custom'
+                    text_color: 'black'
+
+            MDBoxLayout:
+                canvas.before:
+                    Color:
+                        rgba: 0.3, 0.3, 0.3, 0.6
+                    Line:
+                        width: 1
+                        rounded_rectangle: self.x, self.y, self.width, self.height, 20, 20, 20, 20
+
+
+    MDCard:
+        ripple_behavior: True
+        radius: 20
+        size_hint_x: 0.85
+        size_hint_y: 0.3
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        on_release: root.transition_to_search_catalog('art')
+
+        MDRelativeLayout:
+            radius: 20
+
+            FitImage:
+                radius: 20
+                source: 'https://img.freepik.com/free-vector/flat-background-international-museum-day_23-2150264413.jpg?w=1380&t=st=1693684779~exp=1693685379~hmac=6c7a91c66aec15931089f0f17fa4dcd37ae058872bf4940e5532fb720c452819'
+
+            MDRelativeLayout:
+                radius: [0, 0, 20, 20]
+                size_hint_y: 0.2
+                pos_hint: {'top': 0.2}
+                md_bg_color: 'white'
+                
+                MDLabel:
+                    text: "ART"
+                    pos_hint: {'x': 0.05}
+                    font_size: '17sp'
+                    font_name: 'fonts/Helvetica'
+                    theme_text_color: 'Custom'
+                    text_color: 'black'
+
+            MDBoxLayout:
+                canvas.before:
+                    Color:
+                        rgba: 0.3, 0.3, 0.3, 0.6
+                    Line:
+                        width: 1
+                        rounded_rectangle: self.x, self.y, self.width, self.height, 20, 20, 20, 20
+
+    MDCard:
+        ripple_behavior: True
+        radius: 20
+        size_hint_x: 0.85
+        size_hint_y: 0.3
+        pos_hint: {'center_x': 0.5, 'center_y': 0.17}
+        on_release: root.transition_to_search_catalog('media')
+
+        MDRelativeLayout:
+            radius: 20
+
+            FitImage:
+                radius: 20
+                source: 'https://img.freepik.com/free-vector/tv-host-interviewing-celebrity-person-studio_74855-7890.jpg?w=1380&t=st=1693692753~exp=1693693353~hmac=2d6c97eff68b4c99a87cb316e001fb548c494ba21177a4a53644f1f9c7558f33'
+
+            MDRelativeLayout:
+                radius: [0, 0, 20, 20]
+                size_hint_y: 0.2
+                pos_hint: {'top': 0.2}
+                md_bg_color: 'white'
+
+                MDLabel:
+                    text: "MEDIA"
+                    pos_hint: {'x': 0.05}
+                    font_size: '17sp'
+                    font_name: 'fonts/Helvetica'
+                    theme_text_color: 'Custom'
+                    text_color: 'black'
+
+            MDBoxLayout:
+                canvas.before:
+                    Color:
+                        rgba: 0.3, 0.3, 0.3, 0.6
+                    Line:
+                        width: 1
+                        rounded_rectangle: self.x, self.y, self.width, self.height, 20, 20, 20, 20

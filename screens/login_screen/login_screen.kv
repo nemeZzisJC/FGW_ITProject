@@ -1,0 +1,135 @@
+#:import LoginScreen screens.login_screen.login_screen.LoginScreen
+
+<LoginScreen>:
+    name: 'login_screen'
+
+    MDRelativeLayout:
+        size_hint: 1, 0.35
+        md_bg_color: '#323949'
+        pos_hint: {'top': 1, 'center_x': 0.5}
+        radius: [0, 0, 20, 20]
+
+        Image:
+            source: 'images/login.png'
+            size_hint_x: None
+            width: sp(250)
+            adaptive_size: True
+            pos_hint: {"center_x": 0.5}
+
+    MDRelativeLayout:
+        size_hint: 0.85, 0.65
+        pos_hint: {'center_x': 0.5, 'top': 0.65}
+
+        MDLabel:
+            text: 'Login'
+            font_name: 'fonts/Helvetica-Bold'
+            font_size: '30dp'
+            halign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.9}
+
+        MDLabel:
+            id: email_label_login
+            adaptive_size: True
+            text: 'Email'
+            font_name: 'fonts/Helvetica-Bold'
+            font_size: '20dp'
+            pos_hint: {'center_y': 0.75}
+
+        MDTextField:
+            id: email_input_login
+            pos: 0, email_label_login.y - 60
+            font_size: '20dp'
+            font_name: 'fonts/Helvetica'
+            line_color_focus: (50/256, 57/256, 73/256, 1)
+            text_color_focus: 'black'
+            
+        MDLabel:
+            id: password_label_login
+            adaptive_size: True
+            text: 'Password'
+            font_name: 'fonts/Helvetica-Bold'
+            font_size: '20dp'
+            pos: 0, email_input_login.y - 30
+
+        MDTextField:
+            id: password_input_login
+            pos: 0, password_label_login.y - 60
+            font_size: '20dp'
+            font_name: 'fonts/Helvetica'
+            line_color_focus: (50/256, 57/256, 73/256, 1)
+            text_color_focus: 'black'
+            password: True
+
+        MDIconButton:
+            icon: "eye-off"
+            pos: password_input_login.width - self.width + dp(8), password_input_login.y + password_input_login.height // 2 - self.height // 2
+            theme_text_color: "Hint"
+            on_release:
+                self.icon = "eye" if self.icon == "eye-off" else "eye-off"
+                password_input_login.password = False if password_input_login.password is True else True
+
+        MDFillRoundFlatButton:
+            id: login_button
+            text: 'Sign In'
+            font_name: 'fonts/Helvetica'
+            font_size: '20dp'
+            theme_text_color: 'Custom'
+            text_color: 'white'
+            md_bg_color: (50/256, 57/256, 73/256, 1)
+            pos_hint: {'center_x': 0.5}
+            size_hint: 0.7, 0.1
+            pos: 0, password_input_login.y - 90
+            on_press: root.login()
+
+        MDRectangleFlatButton:
+            ripple_alpha: 0
+            size_hint_y: None
+            size_hint_x: 0.7
+            height: '20dp'
+            md_bg_color: (1, 1, 1, 0)
+            line_color: (0, 0, 0, 0)
+            pos_hint: {'center_x': 0.5}
+            pos: 0, login_button.y - 30
+            on_press: root.on_under_login_click()
+
+        MDLabel:
+            id: already_label
+            adaptive_size: True
+            text: "Don't have an account? Sign up"
+            font_name: 'fonts/Helvetica'
+            font_size: '15dp'
+            theme_text_color: 'Custom'
+            text_color: 'black'
+            pos_hint: {'center_x': 0.5}
+            pos: 0, login_button.y - 30
+
+        MDLabel:
+            id: error_label
+            adaptive_height: True
+            hint_size_x: 0.8
+            text: ''
+            font_name: 'fonts/Helvetica-Bold'
+            font_size: '14dp'
+            theme_text_color: 'Custom'
+            text_color: '#f01e2c'
+            halign: 'center'
+            pos_hint: {'center_x': 0.5}
+            pos: 0, already_label.y - 40
+
+<SuccessSnackbarLogin>:
+    MDIcon:
+        pos_hint: {'center_y': .5}
+        icon: 'check-circle-outline'
+        theme_text_color: "Custom"
+        text_color: '#60cd2c'
+
+    MDLabel:
+        id: text_bar
+        size_hint_y: None
+        height: self.texture_size[1]
+        text: root.text
+        font_size: '14dp'
+        font_name: 'fonts/Helvetica'
+        theme_text_color: 'Custom'
+        text_color: (0, 0, 0)
+        pos_hint: {'center_y': .5}

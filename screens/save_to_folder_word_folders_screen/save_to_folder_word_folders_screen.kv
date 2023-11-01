@@ -1,0 +1,135 @@
+#:import SaveToFolderWordFoldersScreen screens.save_to_folder_word_folders_screen.save_to_folder_word_folders_screen.SaveToFolderWordFoldersScreen
+
+<SaveToFolderWordFoldersScreen>:
+    name: 'save_to_folder_word_folders_screen'
+
+    MDRelativeLayout:
+        id: search_bar_layout
+        size_hint_y: 0.07
+        md_bg_color: app.theme_cls.bg_dark
+        pos_hint: {'top': 1}
+
+        MDIconButton:
+            id: back_to_reading_screen
+            icon: 'arrow-left'
+            pos_hint: {'center_y': 0.4}
+            pos: 0, 0
+            on_release: root.transition_to_reading_screen()
+
+        MDRelativeLayout:
+            size_hint_y: 0.45
+            radius: [10, 10, 10, 10]
+            size_hint_x: 0.8
+            md_bg_color: 'white'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+
+            MDIcon:
+                icon: 'magnify'
+                pos_hint: {'center_y': 0.5}
+                pos: 5, 0
+                theme_text_color: 'Custom'
+                text_color: 'grey'
+
+            MDTextField:
+                id: word_folders_search_bar
+                pos_hint: {'center_y': 0.5}
+                hint_text: 'Search folder'
+                pos: 33, 0
+                size_hint_x: 0.85
+                line_color_normal: (1, 1, 1, 0)
+                line_color_focus: (1, 1, 1, 0)
+                text_color_focus: (0.3, 0.3, 0.3, 1)
+                hint_text_color_focus: (1, 1, 1, 0)
+                on_focus: root.search_bar_hint_text_color() if not self.focus else None
+                line_anim: False
+                font_name: 'fonts/Helvetica'
+                font_name_hint_text: 'fonts/Helvetica'
+
+    MDRelativeLayout:
+        id: path_layout
+        pos_hint: {'top': 0.93}
+        orientation: 'vertical'
+        size_hint_y: 0.05
+        padding: [5, 0, 5, 0]
+
+        MDLabel:
+            id: path_label
+            size_hint: None, None
+            size: self.texture_size
+            text_size: None, self.height
+            text: 'Path:'
+            font_size: '18sp'
+            font_name: 'fonts/Helvetica-Bold'
+            pos_hint: {'center_y': 0.5}
+            pos: 10, 0
+
+        ScrollView:
+            size_hint_y: None
+            size_hint_x: None
+            width: root.width - path_label.width - 30
+            height: '18sp'
+            do_scroll_x: True
+            do_scroll_y: False
+            bar_width: 0
+            pos_hint: {'center_y': 0.5}
+            pos: path_label.x + path_label.width + 5, 0
+
+            MDLabel:
+                id: path_showing_label
+                size_hint: None, None
+                size: self.texture_size
+                text_size: None, self.height
+                text: '/'
+                font_size: '18sp'
+                font_name: 'fonts/Helvetica'
+
+    MDLabel:
+        id: content_label
+        text: 'Content:'
+        font_name: 'fonts/Helvetica-Bold'
+        font_size: '18sp'
+        adaptive_height: True
+        pos: 10, path_layout.y - self.height
+
+    ScrollView:
+        id: folders_scroll_view
+        do_scroll_y: True
+        do_scroll_x: False
+        size_hint: (1, None)
+        size: 0, root.height * 0.88 - content_label.height
+        bar_width: 0
+        pos_hint: {'center_x': 0.5}
+        pos: 0, 0
+
+        MDBoxLayout:
+            adaptive_height: True
+
+            MDList:
+                id: folders_list
+                size_hint: (1, None)
+
+    MDIconButton:
+        id: back_to_parent_folder
+        icon: 'arrow-left'
+        theme_icon_color: 'Custom'
+        icon_color: 'white'
+        md_bg_color: '#008080'
+        pos: 10, 20
+        on_release: root.go_back_to_parent_folder()
+
+    MDIconButton:
+        id: create_folder
+        icon: 'plus'
+        theme_icon_color: 'Custom'
+        icon_color: 'white'
+        md_bg_color: '#008080'
+        pos: root.width - self.width - 10, 20
+        on_release: root.create_new_folder()
+
+    MDIconButton:
+        icon: 'check'
+        theme_icon_color: 'Custom'
+        icon_color: 'white'
+        md_bg_color: '#008080'
+        pos: root.width - self.width - 10, create_folder.y + create_folder.height + 10
+        on_release: root.handle_add_word_to_current_folder()

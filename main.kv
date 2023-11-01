@@ -1,0 +1,85 @@
+#:include screens/registration_screen/registration_screen.kv
+#:include screens/login_screen/login_screen.kv
+#:include screens/home_screen/home_screen.kv
+#:include screens/catalog_screen_category/catalog_screen_category.kv
+#:include screens/catalog_screen_search/catalog_screen_search.kv
+#:include screens/reading_screen/reading_screen.kv
+#:include screens/save_to_folder_word_folders_screen/save_to_folder_word_folders_screen.kv
+#:include screens/all_storages_screen/all_storages_screen.kv
+#:include screens/all_words_screen/all_words_screen.kv
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+
+MainInterface:
+
+<MainInterface>:
+    ScreenManager:
+        id: main_screen_manager
+        transition: NoTransition()
+
+        MDScreen:
+            name: 'authorization_screen'
+
+            ScreenManager:
+                id: authorization_screen_manager
+
+                RegistrationScreen:
+                    id: registration_screen
+
+                LoginScreen:
+                    id: login_screen
+        
+        MDScreen:
+            name: 'main_screen'
+
+            MDBottomNavigation:
+                id: bottom_navigation
+                panel_color: (0.92, 0.92, 0.92, 1)
+                selected_color_background: (0, 0, 0, 0)
+                text_color_active: 'black'
+                use_text: False
+
+                HomeScreen:
+                    id: home_screen
+
+                MDBottomNavigationItem:
+                    name: 'catalog_screen'
+                    icon: 'magnify'
+
+                    ScreenManager:
+                        id: catalog_screen_manager
+
+                        CatalogCategory:
+
+                        CatalogSearch:
+                            id: catalog_search
+
+                        ReadingScreen:
+                            id: reading_screen
+
+                        LoadingScreen:
+
+                        SaveToFolderWordFoldersScreen:
+                            id: save_to_folder_word_folders_screen
+
+
+
+                MDBottomNavigationItem:
+                    name: 'words_screen'
+                    icon: 'book-open-variant'
+
+                    ScreenManager:
+                        id: storages_screen_manager
+
+                        AllStoragesScreen:
+                            id: all_storages_screen
+
+                        AllWordsScreen:
+                            id: all_words_screen
+
+                MDBottomNavigationItem:
+                    name: 'exercise_screen'
+                    icon: 'chart-line'
+
+                MDBottomNavigationItem:
+                    name: 'profile_screen'
+                    icon: 'account-circle'
