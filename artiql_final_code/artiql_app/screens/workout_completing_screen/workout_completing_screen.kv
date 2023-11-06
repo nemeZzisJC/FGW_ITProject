@@ -1,0 +1,313 @@
+#:import WorkoutCompletingScreen screens.workout_completing_screen.workout_completing_screen.WorkoutCompletingScreen
+#:import SwapTransition kivy.uix.screenmanager.SwapTransition
+#:import DefinitionOnCardComponent screens.workout_completing_screen.workout_completing_screen.DefinitionOnCardComponent
+#:import TranslationOnCardComponent screens.workout_completing_screen.workout_completing_screen.TranslationOnCardComponent
+
+<WorkoutCompletingScreen>:
+    name: 'workout_completing_screen'
+
+    MDIconButton:
+        id: back_to_workout_folders_screen_button
+        icon: 'arrow-left'
+        pos: 0, root.height - self.height - 10
+        on_release: root.transition_to_workout_folders_screen()
+
+    MDCard:
+        id: flashcard
+        pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+        size_hint: (0.8, 0.6)
+        radius: 20
+        md_bg_color: app.theme_cls.bg_dark
+        on_release: root.change_flashcard_state()
+
+        canvas.before:
+            Color:
+                rgba: 0.1, 0.1, 0.1, 0.8
+            Line:
+                width: 1
+                rounded_rectangle: self.x, self.y, self.width, self.height, 20, 20, 20, 20
+
+        ScreenManager:
+            id: workout_completing_screen_manager
+            transition: SwapTransition()
+
+            MDScreen:
+                name: 'word_screen'
+
+                MDLabel:
+                    id: word_or_phrase
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                    adaptive_height: True
+                    halign: 'center'
+                    font_name: 'fonts/Helvetica'
+                    font_size: '20sp'
+
+            MDScreen:
+                name: 'word_information_screen'
+
+                MDBoxLayout:
+                    spacing: '15dp'
+                    orientation: 'vertical'
+                    id: word_information_layout
+                    adaptive_height: True
+                    size_hint: (0.9, None)
+                    adaptive_height: True
+                    padding: [0, 30, 0, 30]
+                    pos_hint: {'center_x': 0.5}
+                    pos: 0, flashcard.height - self.height
+
+            MDScreen:
+                name: 'results_screen'
+
+                MDLabel:
+                    id: statistics_label
+                    text: 'Statistics'
+                    adaptive_height: True
+                    font_size: '25sp'
+                    font_name: 'fonts/Helvetica-Bold'
+                    pos: 20, flashcard.height - 100
+
+                MDBoxLayout:
+                    id: number_of_flashcards_layout
+                    adaptive_height: True
+                    orientation: 'vertical'
+                    spacing: '7dp'
+                    pos: 20, statistics_label.y - self.height - 20
+
+                    MDLabel:
+                        id: pre_number_of_flashcards_label
+                        adaptive_height: True
+                        size_hint_x: 0.8
+                        text: 'Number of flashcards in this workout:'
+                        font_size: '18sp'
+                        font_name: 'fonts/Helvetica'
+                        pos_hint: {'center_y': 0.5}
+                        pos: 10, 0
+
+                    MDLabel:
+                        id: number_of_flashcards_label
+                        adaptive_height: True
+                        font_size: '18sp'
+                        font_name: 'fonts/Helvetica'
+                        pos_hint: {'center_y': 0.5}
+                        pos: 10, 0
+
+                MDBoxLayout:
+                    id: correct_answers_layout
+                    adaptive_height: True
+                    orientation: 'vertical'
+                    spacing: '7dp'
+                    pos: 20, number_of_flashcards_layout.y - self.height - 20
+
+                    MDLabel:
+                        id: pre_corret_answers_label
+                        adaptive_height: True
+                        size_hint_x: 0.8
+                        text: 'Correct answers:'
+                        theme_text_color: 'Custom'
+                        text_color: '#069C56'
+                        font_size: '18sp'
+                        font_name: 'fonts/Helvetica'
+                        pos_hint: {'center_y': 0.5}
+                        pos: 10, 0
+
+                    MDLabel:
+                        id: corret_answers_label
+                        adaptive_height: True
+                        font_size: '18sp'
+                        font_name: 'fonts/Helvetica'
+                        pos_hint: {'center_y': 0.5}
+                        pos: 10, 0
+
+                MDBoxLayout:
+                    id: partly_correct_answers_layout
+                    adaptive_height: True
+                    orientation: 'vertical'
+                    spacing: '7dp'
+                    pos: 20, correct_answers_layout.y - self.height - 20
+
+                    MDLabel:
+                        id: pre_partly_correct_answers_label
+                        adaptive_height: True
+                        size_hint_x: 0.8
+                        text: 'Partly correct answers:'
+                        theme_text_color: 'Custom'
+                        text_color: '#FF980E'
+                        font_size: '18sp'
+                        font_name: 'fonts/Helvetica'
+                        pos_hint: {'center_y': 0.5}
+                        pos: 10, 0
+
+                    MDLabel:
+                        id: partly_correct_answers_label
+                        adaptive_height: True
+                        font_size: '18sp'
+                        font_name: 'fonts/Helvetica'
+                        pos_hint: {'center_y': 0.5}
+                        pos: 10, 0
+
+                MDBoxLayout:
+                    id: wrong_answers_layout
+                    adaptive_height: True
+                    orientation: 'vertical'
+                    spacing: '7dp'
+                    pos: 20, partly_correct_answers_layout.y - self.height - 20
+
+                    MDLabel:
+                        id: pre_wrong_answers_label
+                        adaptive_height: True
+                        size_hint_x: 0.8
+                        text: 'Wrong answers:'
+                        theme_text_color: 'Custom'
+                        text_color: '#D3212C'
+                        font_size: '18sp'
+                        font_name: 'fonts/Helvetica'
+                        pos_hint: {'center_y': 0.5}
+                        pos: 10, 0
+
+                    MDLabel:
+                        id: wrong_answers_label
+                        adaptive_height: True
+                        font_size: '18sp'
+                        font_name: 'fonts/Helvetica'
+                        pos_hint: {'center_y': 0.5}
+                        pos: 10, 0
+
+    MDLabel:
+        id: rate_answer
+        text: 'Rate your answer:'
+        font_name: 'fonts/Helvetica-Bold'
+        adaptive_height: True
+        pos_hint: {'center_y': 0.26}
+        pos: 30, 0
+        font_size: '18sp'
+        opacity: 0
+
+    MDFillRoundFlatIconButton:
+        id: correct_answer
+        pos_hint: {'center_x': 0.5}
+        pos: 0, rate_answer.y - self.height - 20
+        size_hint: partly_correct_answer.size_hint
+        text: 'Correct'
+        theme_text_color: "Custom"
+        text_color: "white"
+        icon: 'check'  
+        font_name: 'fonts/Helvetica-Bold'
+        theme_icon_color: "Custom"
+        icon_color: "white"
+        font_size: '16sp'
+        md_bg_color: '#069C56'
+        on_release: root.on_correct_answer_click()
+        opacity: 0
+        disabled: True
+
+    MDFillRoundFlatIconButton:
+        id: partly_correct_answer
+        pos_hint: {'center_x': 0.5}
+        pos: 0, correct_answer.y - self.height - 15
+        text: 'Partly correct'
+        theme_text_color: "Custom"
+        text_color: "white"
+        icon: 'progress-check'  
+        font_name: 'fonts/Helvetica-Bold'
+        theme_icon_color: "Custom"
+        icon_color: "white"
+        font_size: '16sp'
+        md_bg_color: '#FF980E'
+        on_release: root.on_partly_correct_answer_click()
+        opacity: 0
+        disabled: True
+
+    MDFillRoundFlatIconButton:
+        id: wrong_answer
+        pos_hint: {'center_x': 0.5}
+        pos: 0, partly_correct_answer.y - self.height - 15
+        size_hint: partly_correct_answer.size_hint
+        text: 'Wrong'
+        theme_text_color: "Custom"
+        text_color: "white"
+        icon: 'close'  
+        font_name: 'fonts/Helvetica-Bold'
+        theme_icon_color: "Custom"
+        icon_color: "white"
+        font_size: '16sp'
+        md_bg_color: '#D3212C'
+        on_release: root.on_wrong_answer_click()
+        opacity: 0
+        disabled: True
+
+<DefinitionOnCardComponent>:
+    orientation: 'vertical'
+    adaptive_height: True
+    spacing: '10dp'
+    pos_hint: {'top': 1}
+
+    MDLabel:
+        text: 'Definition'
+        font_name: 'fonts/Helvetica-Bold'
+        font_size: '18sp'
+        adaptive_height: True
+        theme_text_color: 'Custom'
+        text_color: 'black'
+
+    MDBoxLayout:
+        adaptive_height: True
+
+        canvas.before:
+            Color:
+                rgba: 0, 0, 0, 1
+            Line:
+                width: 1
+                rounded_rectangle: self.x, self.y, self.width, self.height, 5, 5, 5, 5
+
+        ScrollView:
+            id: definition_scroll_view
+            do_scroll_y: True
+            do_scroll_x: False
+            size_hint: (1, None)
+            height: '200dp'
+            bar_width: 0
+
+            MDBoxLayout:
+                id: definition_scroll_view_layout
+                orientation: 'vertical'
+                padding: 7
+                adaptive_height: True
+
+<TranslationOnCardComponent>
+    orientation: 'vertical'
+    adaptive_height: True
+    spacing: '10dp'
+    pos_hint: {'top': 1}
+
+    MDLabel:
+        text: "Translation"
+        font_name: 'fonts/Helvetica-Bold'
+        font_size: '18sp'
+        adaptive_height: True
+        theme_text_color: 'Custom'
+        text_color: 'black'
+
+    MDBoxLayout:
+        adaptive_height: True
+
+        canvas.before:
+            Color:
+                rgba: 0, 0, 0, 1
+            Line:
+                width: 1
+                rounded_rectangle: self.x, self.y, self.width, self.height, 5, 5, 5, 5
+
+        ScrollView:
+            id: translation_scroll_view
+            do_scroll_y: True
+            do_scroll_x: False
+            size_hint: (1, None)
+            height: '120dp'
+            bar_width: 0
+
+            MDBoxLayout:
+                id: translation_scroll_view_layout
+                orientation: 'vertical'
+                padding: 7
+                adaptive_height: True

@@ -1,0 +1,113 @@
+#:import AllWordsScreen screens.all_words_screen.all_words_screen.AllWordsScreen
+#:import CustomWord screens.all_words_screen.all_words_screen.CustomWord
+#:import RightCheckbox screens.all_words_screen.all_words_screen.RightCheckbox
+
+<AllWordsScreen>:
+    name: 'all_words_screen'
+
+    MDRelativeLayout:
+        id: search_bar_layout
+        size_hint_y: 0.07
+        md_bg_color: app.theme_cls.bg_dark
+        pos_hint: {'top': 1}
+
+        MDIconButton:
+            id: back_to_all_storages_screen
+            icon: 'arrow-left'
+            pos_hint: {'center_y': 0.4}
+            pos: 0, 0
+            on_release: root.transition_to_all_storages_screen()
+
+        MDIconButton:
+            icon: 'check-circle-outline'
+            pos_hint: {'center_y': 0.42}
+            pos: search_bar_layout.width - self.width, 0
+            ripple_scale: 0.5
+            on_release: root.turn_on_selection_mode()
+
+        MDRelativeLayout:
+            size_hint_y: 0.45
+            radius: [10, 10, 10, 10]
+            size_hint_x: 0.8
+            md_bg_color: 'white'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+
+            MDIcon:
+                icon: 'magnify'
+                pos_hint: {'center_y': 0.5}
+                pos: 5, 0
+                theme_text_color: 'Custom'
+                text_color: 'grey'
+
+            MDTextField:
+                id: all_words_search_bar
+                pos_hint: {'center_y': 0.5}
+                hint_text: 'Search word'
+                pos: 33, 0
+                size_hint_x: 0.85
+                line_color_normal: (1, 1, 1, 0)
+                line_color_focus: (1, 1, 1, 0)
+                text_color_focus: (0.3, 0.3, 0.3, 1)
+                hint_text_color_focus: (1, 1, 1, 0)
+                on_focus: root.search_bar_hint_text_color() if not self.focus else None
+                line_anim: False
+                font_name: 'fonts/Helvetica'
+                font_name_hint_text: 'fonts/Helvetica'
+                on_text_validate: root.search_bar_response(self.text)
+
+    ScrollView:
+        id: words_scroll_view
+        do_scroll_y: True
+        do_scroll_x: False
+        size_hint: (1, None)
+        size: 0, root.height * 0.93
+        bar_width: 0
+        pos_hint: {'center_x': 0.5}
+        pos: 0, 0
+
+        MDBoxLayout:
+            adaptive_height: True
+            padding: [0, 0, 0, 150]
+
+            MDList:
+                id: words_list
+                size_hint: (1, None)
+
+    MDIconButton:
+        id: go_to_word_folders_screen
+        icon: 'folder'
+        theme_icon_color: 'Custom'
+        icon_color: 'white'
+        pos: root.width - self.width - 10, 20
+        md_bg_color: '#008080'
+        on_release: root.transition_to_folder_elements_screen()
+
+    MDIconButton:
+        id: delete_words_button
+        icon: 'delete'
+        theme_icon_color: 'Custom'
+        icon_color: 'white'
+        pos: root.width - self.width - 10, go_to_word_folders_screen.y + go_to_word_folders_screen.height + 10
+        md_bg_color: '#008080'
+        on_release: root.on_delete_button_click()
+        opacity: 0
+        disabled: True
+
+    MDIconButton:
+        id: select_word_for_flashcard
+        icon: 'check'
+        theme_icon_color: 'Custom'
+        icon_color: 'white'
+        pos: root.width - self.width - 10, go_to_word_folders_screen.y + go_to_word_folders_screen.height + 10
+        md_bg_color: '#008080'
+        on_release: root.on_select_word_for_flashcard_click()
+        opacity: 0
+        disabled: True
+
+<CustomWord>:
+    secondary_text: root.local_date
+
+    RightCheckbox:
+        id: right_checkbox
+        opacity: 0
+        disabled: True

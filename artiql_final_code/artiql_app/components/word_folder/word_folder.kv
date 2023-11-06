@@ -1,0 +1,40 @@
+#:import WordFolder components.word_folder.word_folder.WordFolder
+#:import SearchWordFolder components.word_folder.word_folder.WordFolder
+#:import SearchWordFolderWord components.word_folder.word_folder.SearchWordFolderWord
+#:import WordFolderWord components.word_folder.word_folder.WordFolderWord
+#:import RightCheckbox components.word_folder.word_folder.RightCheckbox
+
+<WordFolder>:
+    text: root.name
+    font_name: 'fonts/Helvetica'
+
+    IconLeftWidget:
+        icon: 'folder'
+
+<SearchWordFolder>:
+    text: root.name
+    font_name: 'fonts/Helvetica'
+
+    IconLeftWidget:
+        icon: 'folder'
+
+    IconRightWidget:
+        icon: 'information-outline'
+        on_release: root.show_info()
+
+<SearchWordFolderWord>:
+    text: root.word
+    font_name: 'fonts/Helvetica'
+
+    IconRightWidget:
+        icon: 'information-outline'
+        on_release: root.show_info()
+
+<WordFolderWord>:
+    text: root.word
+    font_name: 'fonts/Helvetica'
+
+    RightCheckbox:
+        id: right_checkbox
+        opacity: 0
+        disabled: True

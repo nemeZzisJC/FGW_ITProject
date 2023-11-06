@@ -1,0 +1,62 @@
+#:import CatalogSearch screens.catalog_screen_search.catalog_screen_search.CatalogSearch
+
+<CatalogSearch>:
+    id: catalog_search
+    name: 'catalog_screen_search'
+
+    # showing articles area
+    ScrollView:
+        id: real_catalog_scroll_view
+        size_hint_y: 0.9
+        pos_hint: {'center_x': 0.5, 'top': 0.9}
+
+        MDBoxLayout:
+            id: catalog_scroll_view
+            orientation: 'vertical'
+            padding: [0, 20, 0, 20]
+            spacing: '30dp'
+            adaptive_height: True
+
+    # search bar area
+    MDRelativeLayout:
+        id: search_bar_layout
+        size_hint_y: 0.1
+        md_bg_color: app.theme_cls.bg_dark
+        pos_hint: {'top': 1}
+
+        MDIconButton:
+            id: back_to_category_catalog
+            icon: 'arrow-left'
+            pos_hint: {'center_y': 0.4}
+            pos: 0, 0
+            on_release: root.transition_to_category_catalog()
+
+        MDRelativeLayout:
+            size_hint_y: 0.45
+            radius: [10, 10, 10, 10]
+            size_hint_x: 0.8
+            md_bg_color: 'white'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+
+            MDIcon:
+                icon: 'magnify'
+                pos_hint: {'center_y': 0.5}
+                pos: 5, 0
+                theme_text_color: 'Custom'
+                text_color: 'grey'
+
+            MDTextField:
+                id: catalog_search_bar
+                pos_hint: {'center_y': 0.5}
+                hint_text: 'Search'
+                pos: 33, 0
+                size_hint_x: 0.85
+                line_color_normal: (1, 1, 1, 0)
+                line_color_focus: (1, 1, 1, 0)
+                text_color_focus: (0.3, 0.3, 0.3, 1)
+                hint_text_color_focus: (1, 1, 1, 0)
+                on_focus: root.search_bar_hint_text_color() if not self.focus else None
+                line_anim: False
+                font_name: 'fonts/Helvetica'
+                font_name_hint_text: 'fonts/Helvetica'
+                on_text_validate: root.search_bar_response(self.text)

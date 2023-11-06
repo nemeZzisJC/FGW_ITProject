@@ -1,0 +1,205 @@
+#:import TranslationDefinitionDiv components.translation_definition_div.translation_definition_div.TranslationDefinitionDiv
+
+
+<TranslationDefinitionDiv>:
+    MDRelativeLayout:
+        MDCard:
+            id: translation_card
+            size_hint: (1, 0.3)
+            pos_hint: {'center_x': 0.5, 'center_y': -0.16}
+            md_bg_color: '#fafafa'
+            radius: [30, 30, 0, 0]
+
+            canvas.before:
+                Color:
+                    rgba: 179/256, 179/256, 179/256, 1
+                Line:
+                    width: 2
+                    rounded_rectangle: self.x, self.y, self.width, self.height, 30, 30, 0, 0
+
+            RelativeLayout:
+                MDIconButton:
+                    icon: 'close'
+                    on_release: root.on_slide_card_down_click()
+                    pos: 5, translation_card.height - self.height + 5
+                    ripple_scale: 0
+
+                MDIconButton:
+                    id: next_screen
+                    icon: 'arrow-right'
+                    on_release: root.next_translation_screen()
+                    pos: app.get_window_width() - self.width - 5, 5
+                    ripple_scale: 0
+
+                MDIconButton:
+                    id: previous_screen
+                    icon: 'arrow-left'
+                    on_release: root.previous_translation_screen()
+                    pos: 5, 5
+                    ripple_scale: 0
+                    opacity: 0
+                    ripple_scale: 0
+
+                ScreenManager:
+                    id: translation_card_screen_manager
+
+                    MDScreen:
+                        name: "definition_screen"
+
+                        MDRelativeLayout:
+                            size_hint: (1, 1)
+
+                            ScrollView:
+                                id: definition_scroll_view
+                                do_scroll_y: True
+                                do_scroll_x: False
+                                size_hint: (0.78, None)
+                                size: 0, translation_card.height - 30
+                                bar_width: 0
+                                pos_hint: {'center_x': 0.5}
+                                pos: 0, 0
+
+                                MDBoxLayout:
+                                    id: definition_scroll_view_layout
+                                    orientation: 'vertical'
+                                    padding: [0, 0, 0, 30]
+                                    adaptive_height: True
+
+                                    MDLabel:
+                                        text: "Word or phrase"
+                                        padding: [0, 0, 0, 5]
+                                        adaptive_height: True
+                                        theme_text_color: "Custom"
+                                        text_color: "black"
+                                        font_name: 'fonts/Helvetica-Bold'
+                                        font_size: '18px'
+
+                                    MDLabel:
+                                        padding: [0, 0, 0, 20]
+                                        id: definition_input
+                                        adaptive_height: True
+                                        text: ""
+                                        theme_text_color: "Custom"
+                                        text_color: "black"
+                                        font_name: 'fonts/Helvetica'
+
+
+                                    MDLabel:
+                                        id: definition_label
+                                        text: "Definition"
+                                        adaptive_size: True
+                                        theme_text_color: "Custom"
+                                        text_color: "black"
+                                        font_name: 'fonts\\Helvetica-bold.ttf'
+                                        font_size: '18dp'
+                                        padding: [0, 0, 0, 3]
+
+                    MDScreen:
+                        name: "translation_screen"
+                        id: translation_screen
+
+                        MDRelativeLayout:
+                            size_hint: (1, 1)
+
+                            ScrollView:
+                                id: translation_scroll_view
+                                do_scroll_y: True
+                                do_scroll_x: False
+                                size_hint: (0.78, None)
+                                size: 0, translation_card.height - 30
+                                bar_width: 0
+                                pos_hint: {'center_x': 0.5}
+                                pos: 0, 0
+
+                                MDBoxLayout:
+                                    orientation: 'vertical'
+                                    padding: [0, 0, 0, 30]
+                                    adaptive_height: True
+
+                                    MDLabel:
+                                        text: "Word or phrase"
+                                        padding: [0, 0, 0, 5]
+                                        adaptive_height: True
+                                        theme_text_color: "Custom"
+                                        text_color: "black"
+                                        font_name: 'fonts/Helvetica-Bold'
+                                        font_size: '18sp'
+
+                                    MDLabel:
+                                        id: translation_input
+                                        adaptive_height: True
+                                        text: ""
+                                        theme_text_color: "Custom"
+                                        text_color: "black"
+                                        font_name: 'fonts/Helvetica'
+                                        padding: [0, 0, 0, 20]
+
+                                    MDRelativeLayout:
+                                        size_hint_x: 1
+                                        size_hint_y: None
+                                        height: 36
+                                        
+                                        MDLabel:
+                                            id: translation_label
+                                            text: "Translation"
+                                            adaptive_size: True
+                                            theme_text_color: "Custom"
+                                            text_color: "black"
+                                            font_name: 'fonts/Helvetica-Bold'
+                                            font_size: '18dp'
+                                            pos: 0, 0
+                                            padding: [0, 0, 0, 5]
+
+                                        MDBoxLayout:
+                                            size_hint: None, None
+                                            height: '24dp'
+                                            width: '24dp'
+                                            pos_hint: {'center_y': 0.5}
+                                            pos: translation_label.x + translation_label.width + 5, 0
+
+                                            FitImage:
+                                                source: 'icons/ya_translate_icon.png'
+
+                                    MDLabel:
+                                        id: russian_translation
+                                        adaptive_height: True
+                                        text: "Center 2"
+                                        theme_text_color: "Custom"
+                                        text_color: "black"
+                                        pos_hint: {'center_y': 0.5}
+                                        font_name: 'fonts/Helvetica'
+
+                    MDScreen:
+                        name: "save_to_dictionary"
+
+                        MDRelativeLayout:
+                            size_hint: (1, 1)
+
+                            MDLabel:
+                                adaptive_height: True
+                                size_hint_x: 0.6
+                                text: "Want to save this word or phrase to dicionary?"
+                                halign: 'center'
+                                pos_hint: {'center_x': 0.5, 'center_y': 0.75}
+                                font_name: 'fonts/Helvetica-Bold'
+                                font_size: '20sp'
+
+                            MDFillRoundFlatButton:
+                                text: "Fast save"
+                                md_bg_color: '#008080'
+                                font_name: 'fonts/Helvetica-Bold'
+                                halign: 'center'
+                                valign: 'center'
+                                size_hint_x: 0.35
+                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                                on_press: root.on_fast_save_click()
+
+                            MDFillRoundFlatButton:
+                                text: "Save to folder"
+                                md_bg_color: '#008080'
+                                font_name: 'fonts/Helvetica-Bold'
+                                halign: 'center'
+                                valign: 'center'
+                                size_hint_x: 0.35
+                                pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+                                on_release: root.on_save_to_folder_click()

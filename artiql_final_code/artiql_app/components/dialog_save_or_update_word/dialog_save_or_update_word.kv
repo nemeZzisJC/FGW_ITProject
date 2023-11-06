@@ -1,0 +1,29 @@
+#:import DialogSaveOrUpdateWord components.dialog_save_or_update_word.dialog_save_or_update_word.DialogSaveOrUpdateWord
+#:import DialogSaveOrUpdateWordContent components.dialog_save_or_update_word.dialog_save_or_update_word.DialogSaveOrUpdateWordContent
+
+<DialogSaveOrUpdateWord>:
+    title: 'Word update operations:'
+    font_name: 'fonts/Helvetica'
+
+<DialogSaveOrUpdateWordContent>:
+    orientation: 'vertical'
+    adaptive_height: True
+    spacing: '15dp'
+
+    MDFillRoundFlatButton:
+        id: update_button
+        text: 'Update definition/translation'
+        theme_text_color: "Custom"
+        text_color: "white"
+        font_name: 'fonts/Helvetica'
+        md_bg_color: '#008080'
+        on_release: root.on_update_button_click()
+
+    MDFillRoundFlatButton:
+        id: save_to_folder
+        text: 'Save to folder'
+        theme_text_color: "Custom"
+        text_color: "white"
+        font_name: 'fonts/Helvetica'
+        md_bg_color: '#008080'
+        on_release: root.on_save_to_folder_button_click()

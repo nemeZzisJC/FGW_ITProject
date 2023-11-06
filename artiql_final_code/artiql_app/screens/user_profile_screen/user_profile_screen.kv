@@ -1,0 +1,127 @@
+#:import UserProfileScreen screens.user_profile_screen.user_profile_screen.UserProfileScreen
+
+<UserProfileScreen>:
+    MDCard:
+        id: user_avatar
+        size_hint: None, None
+        size: "80dp", "80dp"
+        pos: 20, root.height - self.height - 20
+        radius: 100
+
+        FitImage:
+            source: 'images/user_avatar.png'
+            size: "80dp", "80dp"
+            radius: [80]
+            pos_hint: {"center_x": .5, "center_y": .5}
+            allow_stretch: True
+            size_hint: None, None
+            size: "80dp", "80dp"
+            allow_stretch: True
+
+    MDLabel:
+        id: hello_user_label
+        pos: user_avatar.x + user_avatar.width + 20, root.height - self.height // 2 - 20 - user_avatar.height // 2
+        font_name: 'fonts/Helvetica-Bold'
+        font_size: '25sp'
+        adaptive_height: True
+        size_hint_x: 0.6
+
+    MDLabel:
+        id: view_activity_label
+        adaptive_height: True
+        font_name: 'fonts/Helvetica-Italic'
+        font_size: '20sp'
+        text: 'View your activity in the app:'
+        pos: 20, user_avatar.y - self.height - 20
+
+    MDFillRoundFlatIconButton:
+        id: show_calendar
+        pos: 20, view_activity_label.y - self.height - 15
+        text: 'Select time period'
+        theme_text_color: "Custom"
+        text_color: "white"
+        font_name: 'fonts/Helvetica'
+        icon: 'calendar'
+        theme_icon_color: "Custom"
+        icon_color: "white"
+        font_size: '16sp'
+        md_bg_color: '#008080'
+        on_release: root.on_show_calendar_click()
+
+    MDBoxLayout:
+        id: workouts_count_layout
+        adaptive_height: True
+        orientation: 'vertical'
+        spacing: '7dp'
+        pos: 20, show_calendar.y - self.height - 20
+        opacity: 0
+
+        MDLabel:
+            id: pre_workouts_count_label
+            adaptive_height: True
+            size_hint_x: 0.8
+            text: 'Number of completed workouts:'
+            font_size: '18sp'
+            font_name: 'fonts/Helvetica-Bold'
+            pos_hint: {'center_y': 0.5}
+            pos: 10, 0
+
+        MDLabel:
+            id: workouts_count_label
+            adaptive_height: True
+            font_size: '18sp'
+            font_name: 'fonts/Helvetica'
+            pos_hint: {'center_y': 0.5}
+            pos: 10, 0
+
+    MDBoxLayout:
+        id: time_training_layout
+        adaptive_height: True
+        orientation: 'vertical'
+        spacing: '7dp'
+        pos: 20, workouts_count_layout.y - self.height - 20
+        opacity: 0
+
+        MDLabel:
+            id: pre_time_training_label
+            adaptive_height: True
+            size_hint_x: 0.8
+            text: 'Time spend training:'
+            font_size: '18sp'
+            font_name: 'fonts/Helvetica-Bold'
+            pos_hint: {'center_y': 0.5}
+            pos: 10, 0
+
+        MDLabel:
+            id: time_training_label
+            adaptive_height: True
+            font_size: '18sp'
+            font_name: 'fonts/Helvetica'
+            pos_hint: {'center_y': 0.5}
+            pos: 10, 0
+
+    MDBoxLayout:
+        id: correct_answers_layout
+        adaptive_height: True
+        orientation: 'vertical'
+        spacing: '7dp'
+        pos: 20, time_training_layout.y - self.height - 20
+        opacity: 0
+
+        MDLabel:
+            id: pre_correct_answers_label
+            adaptive_height: True
+            size_hint_x: 0.8
+            text: 'Correct answers in workouts:'
+            font_size: '18sp'
+            font_name: 'fonts/Helvetica-Bold'
+            pos_hint: {'center_y': 0.5}
+            pos: 10, 0
+
+        MDLabel:
+            id: correct_answers_label
+            adaptive_height: True
+            font_size: '18sp'
+            font_name: 'fonts/Helvetica'
+            pos_hint: {'center_y': 0.5}
+            pos: 10, 0

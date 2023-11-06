@@ -1,0 +1,55 @@
+#:import AllStoragesScreen screens.all_storages_screen.all_storages_screen.AllStoragesScreen
+
+<AllStoragesScreen>:
+    name: 'all_storages_screen'
+
+    MDLabel:
+        id: storages_label
+        text: 'Your storages:'
+        font_name: 'fonts/Helvetica-Bold'
+        adaptive_height: True
+        font_size: '25sp'
+        pos_hint: {'center_y': 0.9}
+        pos: 40, 0
+
+    MDFillRoundFlatIconButton:
+        id: words_storage
+        pos: 40, storages_label.y - self.height - 30
+        text: 'Words'
+        theme_text_color: "Custom"
+        text_color: "white"
+        icon: 'alphabetical-variant'  
+        font_name: 'fonts/Helvetica'
+        theme_icon_color: "Custom"
+        icon_color: "white"
+        font_size: '18sp'
+        md_bg_color: '#008080'
+        on_release: root.on_words_storage_click()  
+
+    MDFillRoundFlatIconButton:
+        id: flashcard_storage
+        pos: 40, words_storage.y - self.height - 20
+        text: 'Flashcards'
+        theme_text_color: "Custom"
+        text_color: "white"
+        icon: 'card-multiple-outline'  
+        font_name: 'fonts/Helvetica'
+        theme_icon_color: "Custom"
+        icon_color: "white"
+        font_size: '18sp'
+        md_bg_color: '#008080'
+        on_release: root.on_flashcards_storage_click()
+
+    MDFillRoundFlatIconButton:
+        id: workouts_storage
+        pos: 40, flashcard_storage.y - self.height - 20
+        text: 'Workouts'
+        theme_text_color: "Custom"
+        text_color: "white"
+        icon: 'arm-flex'  
+        font_name: 'fonts/Helvetica'
+        theme_icon_color: "Custom"
+        icon_color: "white"
+        font_size: '18sp'
+        md_bg_color: '#008080'
+        on_release: root.on_workouts_storage_click()

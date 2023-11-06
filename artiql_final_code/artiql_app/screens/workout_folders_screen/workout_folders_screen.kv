@@ -1,0 +1,152 @@
+#:import WorkoutFoldersScreen screens.workout_folders_screen.workout_folders_screen.WorkoutFoldersScreen
+#:import WorkoutFoldersDialogCreateFolderContent screens.workout_folders_screen.workout_folders_screen.WorkoutFoldersDialogCreateFolderContent
+#:import WorkoutFoldersDialogCreateFolder screens.workout_folders_screen.workout_folders_screen.WorkoutFoldersDialogCreateFolder
+#:import WorkoutChooseCreationType screens.workout_folders_screen.workout_folders_screen.WorkoutChooseCreationType
+#:import WorkoutChooseCreationTypeContent screens.workout_folders_screen.workout_folders_screen.WorkoutChooseCreationTypeContent
+#:import WorkoutCountCreateDialog screens.workout_folders_screen.workout_folders_screen.WorkoutCountCreateDialog
+#:import WorkoutCountCreateDialogContent screens.workout_folders_screen.workout_folders_screen.WorkoutCountCreateDialogContent
+
+<WorkoutFoldersScreen>:
+    name: 'workout_folders_screen'
+
+    MDIconButton:
+        id: delete_folders_and_elements_button
+        icon: 'delete'
+        theme_icon_color: 'Custom'
+        icon_color: 'white'
+        pos: root.width - self.width - 10, 20
+        md_bg_color: '#008080'
+        on_release: root.on_delete_button_click()
+        opacity: 0
+        disabled: True
+
+    MDIconButton:
+        id: add_folder_or_element_button
+        icon: 'plus'
+        theme_icon_color: 'Custom'
+        icon_color: 'white'
+        pos: root.width - self.width - 10, 20
+        md_bg_color: '#008080'
+        on_release: root.on_add_folder_or_element_button_click()
+        opacity: 1
+        disabled: False
+
+<WorkoutCreateElementOrFolderDialog>:
+    title: 'What do you want to create?'
+    font_name: 'fonts/Helvetica'
+
+<WorkoutCreateElementOrFolderDialogContent>:
+    orientation: 'vertical'
+    adaptive_height: True
+    spacing: '15dp'
+
+    MDFillRoundFlatButton:
+        id: create_folder_button
+        text: 'Create a folder'
+        theme_text_color: "Custom"
+        text_color: "white"
+        font_name: 'fonts/Helvetica'
+        md_bg_color: '#008080'
+        on_release: root.on_create_folder_button_click()
+
+    MDFillRoundFlatButton:
+        id: create_workout_button
+        text: 'Create a workout'
+        theme_text_color: "Custom"
+        text_color: "white"
+        font_name: 'fonts/Helvetica'
+        md_bg_color: '#008080'
+        on_release: root.on_create_workout_button_click()
+
+<WorkoutChooseCreationType>:
+    title: 'Which workout do you want to create?'
+    font_name: 'fonts/Helvetica'
+
+<WorkoutChooseCreationTypeContent>:
+    orientation: 'vertical'
+    adaptive_height: True
+    spacing: '15dp'
+
+    MDFillRoundFlatButton:
+        id: create_all_flashcards_workout
+        text: 'All flashcards workout'
+        theme_text_color: "Custom"
+        text_color: "white"
+        font_name: 'fonts/Helvetica'
+        md_bg_color: '#008080'
+        on_release: root.on_create_all_flashcards_workout_click()
+
+    MDFillRoundFlatButton:
+        id: create_selected_flashcards_workout
+        text: 'Selected flashcards workout'
+        theme_text_color: "Custom"
+        text_color: "white"
+        font_name: 'fonts/Helvetica'
+        md_bg_color: '#008080'
+        on_release: root.on_create_selected_flashcards_workout_button_click()
+
+<WorkoutCountCreateDialog>:
+    title: 'All flashcards workout creation'
+    font_name: 'fonts/Helvetica'
+
+<WorkoutCountCreateDialogContent>:
+    orientation: 'vertical'
+    adaptive_height: True
+    spacing: '10dp'
+    padding: [0, 0, 0, 30]
+
+    MDLabel:
+        text: 'Number of flashcards in the workout:'
+        adaptive_height: True
+        font_name: 'fonts/Helvetica'
+        font_size: '18sp'
+
+    MDBoxLayout:
+        adaptive_height: True
+
+        canvas.before:
+            Color:
+                rgba: 0, 0, 0, 1
+            Line:
+                width: 1
+                rounded_rectangle: self.x, self.y, self.width, self.height, 0, 0, 0, 0
+
+        TextInput:
+            id: number_of_flashcards
+            background_color: (0, 0, 0, 0)
+            cursor_color: (0, 0, 0, 1)
+            size_hint: (1, None)
+            height: '35sp'
+            mode: 'rectangle'
+            multiline: False
+            hint_text: 'Number from 1 to 1000'
+            font_name: 'fonts/Helvetica'
+            font_size: '16sp'
+
+    MDLabel:
+        text: 'Name your workout:'
+        adaptive_height: True
+        font_name: 'fonts/Helvetica'
+        font_size: '18sp'
+
+    MDBoxLayout:
+        adaptive_height: True
+
+        canvas.before:
+            Color:
+                rgba: 0, 0, 0, 1
+            Line:
+                width: 1
+                rounded_rectangle: self.x, self.y, self.width, self.height, 0, 0, 0, 0
+
+        TextInput:
+            id: workout_name
+            background_color: (0, 0, 0, 0)
+            cursor_color: (0, 0, 0, 1)
+            size_hint: (1, None)
+            height: '35sp'
+            mode: 'rectangle'
+            multiline: False
+            hint_text: 'workout_name'
+            font_name: 'fonts/Helvetica'
+            font_size: '16sp'

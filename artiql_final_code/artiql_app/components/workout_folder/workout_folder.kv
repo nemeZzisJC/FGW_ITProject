@@ -1,0 +1,45 @@
+#:import WorkoutFolder components.workout_folder.workout_folder.WorkoutFolder
+#:import SearchWorkoutFolder components.workout_folder.workout_folder.SearchWorkoutFolder
+#:import WorkoutFolderWorkout components.workout_folder.workout_folder.WorkoutFolderWorkout
+#:import SearchWorkoutFolderWorkout components.workout_folder.workout_folder.SearchWorkoutFolderWorkout
+#:import RightCheckbox components.word_folder.word_folder.RightCheckbox
+
+<WorkoutFolder>:
+    text: root.name
+    font_name: 'fonts/Helvetica'
+
+    IconLeftWidget:
+        icon: 'folder'
+
+    RightCheckbox:
+        id: right_checkbox
+        opacity: 0
+        disabled: True
+
+<SearchWorkoutFolder>:
+    text: root.name
+    font_name: 'fonts/Helvetica'
+
+    IconLeftWidget:
+        icon: 'folder'
+
+    IconRightWidget:
+        icon: 'information-outline'
+        on_release: root.show_info()
+
+<WorkoutFolderWorkout>:
+    text: root.name
+    font_name: 'fonts/Helvetica'
+
+    RightCheckbox:
+        id: right_checkbox
+        opacity: 0
+        disabled: True
+
+<SearchWorkoutFolderWorkout>:
+    text: root.name
+    font_name: 'fonts/Helvetica'
+
+    IconRightWidget:
+        icon: 'information-outline'
+        on_release: root.show_info()

@@ -1,0 +1,102 @@
+#:import DialogEditWordInfo components.dialog_edit_word_info.dialog_edit_word_info.DialogEditWordInfo
+#:import Content components.dialog_edit_word_info.dialog_edit_word_info.Content
+
+<DialogEditWordInfo>:
+    title: "Do you want to edit anything?"
+    title_font_name: 'fonts/Helvetica-Bold'
+    title_color: (0, 0, 0, 1)
+    auto_dismiss: False
+    buttons: root.buttons
+    content_cls: root.content_cls
+
+
+<Content>:
+    orientation: 'vertical'
+    pos_hint: {'top': 1}
+    size_hint_y: None
+    adaptive_height: True
+    spacing: '10dp'
+    padding: [10, 0, 10, 0]
+
+    MDLabel:
+        adaptive_height: True
+        text: 'Word or phrase'
+        font_name: 'fonts/Helvetica-Bold'
+        font_size: '18sp'
+        theme_text_color: 'Custom'
+        text_color: 'black'
+
+    MDLabel:
+        text: root.word_text
+        font_name: 'fonts/Helvetica'
+        adaptive_height: True
+        theme_text_color: 'Custom'
+        text_color: 'black'
+
+    MDLabel:
+        text: 'Definition'
+        font_name: 'fonts/Helvetica-Bold'
+        font_size: '18sp'
+        adaptive_height: True
+        theme_text_color: 'Custom'
+        text_color: 'black'
+
+    MDBoxLayout:
+        adaptive_height: True
+
+        canvas.before:
+            Color:
+                rgba: 0, 0, 0, 1
+            Line:
+                width: 1
+                rounded_rectangle: self.x, self.y, self.width, self.height, 0, 0, 0, 0
+
+        TextInput:
+            id: new_definition_input
+            background_color: (0, 0, 0, 0)
+            cursor_color: (0, 0, 0, 1)
+            size_hint: (1, None)
+            height: '150dp'
+            max_height: '150dp'
+            multiline: True
+            mode: 'rectangle'
+            text: root.definition_text
+            font_name: 'fonts/Helvetica'
+
+    MDLabel:
+        markup: True
+        text: '[color=#f01e2c]Note:[/color] the definitions should be entered in the same format as they are shown when reading the article'
+        font_name: 'fonts/Helvetica-Italic'
+        adaptive_height: True
+        theme_text_color: 'Custom'
+        text_color: 'black'
+
+    MDLabel:
+        text: "Translation"
+        font_name: 'fonts/Helvetica-Bold'
+        font_size: '18sp'
+        adaptive_height: True
+        theme_text_color: 'Custom'
+        text_color: 'black'
+
+    MDBoxLayout:
+        adaptive_height: True
+
+        canvas.before:
+            Color:
+                rgba: 0, 0, 0, 1
+            Line:
+                width: 1
+                rounded_rectangle: self.x, self.y, self.width, self.height, 0, 0, 0, 0
+
+        TextInput:
+            id: new_translation_input
+            background_color: (0, 0, 0, 0)
+            cursor_color: (0, 0, 0, 1)
+            size_hint_y: None
+            height: "150dp"
+            max_height: '150dp'
+            multiline: True
+            mode: 'rectangle'
+            text: root.translation_text
+            font_name: 'fonts/Helvetica'

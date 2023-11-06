@@ -1,0 +1,42 @@
+#:import WordFoldersScreen screens.word_folders_screen.word_folders_screen.WordFoldersScreen
+#:import CustomWordFolderWord screens.word_folders_screen.word_folders_screen.CustomWordFolderWord
+#:import WordFoldersCustomWordFolder screens.word_folders_screen.word_folders_screen.WordFoldersCustomWordFolder
+#:import WordFoldersRightCheckbox screens.word_folders_screen.word_folders_screen.WordFoldersRightCheckbox
+
+
+<WordFoldersScreen>:
+    name: 'word_folders_screen'
+
+    MDIconButton:
+        id: delete_folders_and_elements_button
+        icon: 'delete'
+        theme_icon_color: 'Custom'
+        icon_color: 'white'
+        pos: root.width - self.width - 10, 20
+        md_bg_color: '#008080'
+        on_release: root.on_delete_button_click()
+        opacity: 0
+        disabled: True
+
+    MDIconButton:
+        id: select_word_for_flashcard
+        icon: 'check'
+        theme_icon_color: 'Custom'
+        icon_color: 'white'
+        pos: root.width - self.width - 10, 20
+        md_bg_color: '#008080'
+        on_release: root.on_select_word_for_flashcard_click()
+        opacity: 0
+        disabled: True
+
+<WordFoldersCustomWordFolder>:
+    text: root.name
+    font_name: 'fonts/Helvetica'
+
+    IconLeftWidget:
+        icon: 'folder'
+
+    WordFoldersRightCheckbox:
+        id: right_checkbox
+        opacity: 0
+        disabled: False

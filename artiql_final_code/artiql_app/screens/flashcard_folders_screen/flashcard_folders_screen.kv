@@ -1,0 +1,204 @@
+#:import FlashcardFoldersScreen screens.flashcard_folders_screen.flashcard_folders_screen.FlashcardFoldersScreen
+#:import FlashcardCreateElementOrFolderDialog screens.flashcard_folders_screen.flashcard_folders_screen.FlashcardCreateElementOrFolderDialog
+#:import FlashcardCreateElementOrFolderDialogContent screens.flashcard_folders_screen.flashcard_folders_screen.FlashcardCreateElementOrFolderDialogContent
+#:import DialogShowWorkoutSelectedFlashcards screens.flashcard_folders_screen.flashcard_folders_screen.DialogShowWorkoutSelectedFlashcards
+#:import DialogShowSecondTypeWorkout screens.flashcard_folders_screen.flashcard_folders_screen.DialogShowSecondTypeWorkout
+#:import DialogShowSecondTypeWorkoutContent screens.flashcard_folders_screen.flashcard_folders_screen.DialogShowSecondTypeWorkoutContent
+
+
+<FlashcardFoldersScreen>:
+    name: 'flashcard_folders_screen'
+
+    MDIconButton:
+        id: delete_folders_and_elements_button
+        icon: 'delete'
+        theme_icon_color: 'Custom'
+        icon_color: 'white'
+        pos: root.width - self.width - 10, 20
+        md_bg_color: '#008080'
+        on_release: root.on_delete_button_click()
+        opacity: 0
+        disabled: True
+
+    MDIconButton:
+        id: add_folder_or_element_button
+        icon: 'plus'
+        theme_icon_color: 'Custom'
+        icon_color: 'white'
+        pos: root.width - self.width - 10, 20
+        md_bg_color: '#008080'
+        on_release: root.on_add_folder_or_element_button_click()
+        opacity: 1
+        disabled: False
+
+    MDIconButton:
+        id: add_folder_or_element_to_workout_button
+        icon: 'check'
+        theme_icon_color: 'Custom'
+        icon_color: 'white'
+        pos: root.width - self.width - 10, 20
+        md_bg_color: '#008080'
+        on_release: root.on_add_folder_or_element_to_workout_button_click()
+        opacity: 0
+        disabled: True
+
+    MDFlatButton:
+        id: finish_flashcard_selection_button
+        pos_hint: {'center_x': 0.5}
+        pos: 0, 20
+        text: 'Finish selection'
+        theme_text_color: 'Custom'
+        text_color: '#008080'
+        font_name: 'fonts/Helvetica'
+        font_size: '16sp'
+        opacity: 0
+        disabled: True
+        on_release: root.on_finish_flashcard_selection_button_click()
+
+<FlashcardCreateElementOrFolderDialog>:
+    title: 'What do you want to create?'
+    font_name: 'fonts/Helvetica'
+
+<FlashcardCreateElementOrFolderDialogContent>:
+    orientation: 'vertical'
+    adaptive_height: True
+    spacing: '15dp'
+
+    MDFillRoundFlatButton:
+        id: create_folder_button
+        text: 'Create a folder'
+        theme_text_color: "Custom"
+        text_color: "white"
+        font_name: 'fonts/Helvetica'
+        md_bg_color: '#008080'
+        on_release: root.on_create_folder_button_click()
+
+    MDFillRoundFlatButton:
+        id: create_flashcard_button
+        text: 'Create a flashcard'
+        theme_text_color: "Custom"
+        text_color: "white"
+        font_name: 'fonts/Helvetica'
+        md_bg_color: '#008080'
+        on_release: root.on_create_flashcard_button_click()
+
+<DialogShowWorkoutSelectedFlashcards>:
+    title: 'Add workout'
+    font_name: 'fonts/Helvetica'
+
+<DialogShowWorkoutSelectedFlashcardsContent>:
+    orientation: 'vertical'
+    adaptive_height: True
+    spacing: '10dp'
+    padding: [0, 0, 0, 30]
+
+    MDLabel:
+        text: 'Name your workout:'
+        adaptive_height: True
+        font_name: 'fonts/Helvetica-Bold'
+        font_size: '18sp'
+
+    MDBoxLayout:
+        adaptive_height: True
+
+        canvas.before:
+            Color:
+                rgba: 0, 0, 0, 1
+            Line:
+                width: 1
+                rounded_rectangle: self.x, self.y, self.width, self.height, 0, 0, 0, 0
+
+        TextInput:
+            id: workout_name
+            background_color: (0, 0, 0, 0)
+            cursor_color: (0, 0, 0, 1)
+            size_hint: (1, None)
+            height: '35sp'
+            mode: 'rectangle'
+            multiline: False
+            hint_text: 'workout_name'
+            font_name: 'fonts/Helvetica'
+            font_size: '16sp'
+
+    MDLabel:
+        text: "Workout flashcards:"
+        font_name: 'fonts/Helvetica-Bold'
+        font_size: '18sp'
+        adaptive_height: True
+        theme_text_color: 'Custom'
+        text_color: 'black'
+
+    ScrollView:
+        id: flashcards_scroll_view
+        do_scroll_y: True
+        do_scroll_x: False
+        size_hint: (1, None)
+        height: '150dp'
+        bar_width: 0
+
+        MDBoxLayout:
+            adaptive_height: True
+
+            MDList:
+                id: flashcards_list
+                size_hint: (1, None)
+
+<DialogShowSecondTypeWorkout>:
+    title: 'Workout information'
+    font_name: 'fonts/Helvetica'
+
+<DialogShowSecondTypeWorkoutContent>:
+    orientation: 'vertical'
+    adaptive_height: True
+    padding: [0, 0, 0, 10]
+    spacing: '15dp'
+
+    MDBoxLayout:
+        spacing: '5dp'
+        adaptive_height: True
+
+        MDLabel:
+            size_hint: None, None
+            size: self.texture_size
+            text_size: None, self.height
+            text: 'Workout name:'
+            font_name: 'fonts/Helvetica-Bold'
+        
+        MDLabel:
+            text: root.workout_name
+            adaptive_height: True
+            font_name: 'fonts/Helvetica'
+
+    MDLabel:
+        text: 'Workout flashcards:'
+        font_name: 'fonts/Helvetica-Bold'
+        adaptive_height: True
+
+    ScrollView:
+        id: flashcards_scroll_view
+        do_scroll_y: True
+        do_scroll_x: False
+        size_hint: (1, None)
+        height: '150dp'
+        bar_width: 0
+        padding: [0, 0, 0, 10]
+
+        MDBoxLayout:
+            adaptive_height: True
+
+            MDList:
+                id: flashcards_list
+                size_hint: (1, None)
+
+    MDFillRoundFlatIconButton:
+        id: start_workout_button
+        text: 'Start this workout'
+        icon: 'lightning-bolt'
+        theme_text_color: "Custom"
+        text_color: "white"
+        font_name: 'fonts/Helvetica'
+        md_bg_color: '#008080'
+        theme_icon_color: "Custom"
+        icon_color: "white"
+        font_size: '17sp'
+        on_release: root.on_start_workout_button_click()

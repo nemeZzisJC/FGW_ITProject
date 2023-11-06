@@ -1,0 +1,23 @@
+#:import ElementImageAuthor components.element_image_author.element_image_author.ElementImageAuthor
+
+<ElementImageAuthor>:
+    id: image_div
+    size_hint_y: None
+    adaptive_height: True
+    orientation: 'vertical'
+    spacing: '10dp'
+
+    AsyncImage:
+        id: image
+        source: root.image
+        size_hint: (None, None)
+        width: image_div.width
+        height: self.width / self.image_ratio
+
+    MDLabel:
+        id: author
+        adaptive_height: True
+        halign: 'left'
+        text: root.author
+        font_size: '14sp'
+        font_name: 'fonts/Helvetica-light'

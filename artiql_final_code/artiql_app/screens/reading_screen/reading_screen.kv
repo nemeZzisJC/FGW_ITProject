@@ -1,0 +1,29 @@
+#:import ReadingScreen screens.reading_screen.reading_screen.ReadingScreen
+#:import BackButton screens.reading_screen.reading_screen.BackButton
+#:import ReadingScrollView screens.reading_screen.reading_screen.ReadingScrollView
+
+<ReadingScreen>:
+    id: reading_screen
+    name: 'reading_screen'
+    md_bg_color: 'white'
+
+    ReadingScrollView:
+        id: actual_scroll_view
+        do_scroll_y: True
+        do_scroll_x: False
+        size_hint: (0.9, 1)
+        bar_width: 0
+        pos_hint: {'center_x': 0.5, 'top': 1}
+
+        MDBoxLayout:
+            id: reading_scroll_view
+            orientation: 'vertical'
+            padding: [0, 40, 0, 50]
+            adaptive_height: True
+            spacing: '20dp'
+
+
+<BackButton>:
+    id: back_to_category_search_screen
+    icon: 'arrow-left'
+    on_release: root.transition_to_category_search_screen()

@@ -1,0 +1,140 @@
+#:import HomeScreen screens.home_screen.home_screen.HomeScreen
+#:import ArticleSwiperItem screens.home_screen.home_screen.ArticleSwiperItem
+
+<HomeScreen>:
+    name: 'home_screen'
+    icon: 'home'
+
+    MDRelativeLayout:
+        Image:
+            size_hint: None, None
+            width: dp(94)
+            pos_hint_x: None
+            pos_hint_y: None
+            pos: quote_label.x - self.width * 0.26, quote_label.y + quote_label.height - self.height * 0.42
+            source: 'icons/quote_icon_reversed_2.png'
+                
+        MDLabel:
+            id: quote_label
+            pos_hint: {"center_x": 0.5, "center_y": 0.82}
+            size_hint_x: 0.7
+            halign: 'left'
+            font_size: '20sp'
+            font_name: 'fonts/Helvetica-Italic'
+            adaptive_height: True
+            font_size: '25sp'
+            text: "Today is your opportunity to build the tomorrow you want"
+
+        MDLabel:
+            text: "RECOMMENDED"
+            font_size: '28sp'
+            theme_text_color: 'Custom'
+            text_color: (0, 0, 0, 0.85)
+            font_name: 'fonts/Helvetica-Bold'
+            size_hint: None, None
+            width: '300dp'
+            pos: swiper_widget.x + 20, swiper_widget.y + swiper_widget.height - 30
+            halign: 'left'
+
+        MDSwiper:
+            id: swiper_widget
+            size_hint_y: 0.6
+            pos_hint: {'center_x': 0.5, 'y': 0.02}
+
+# A block for showing the article on the home screen
+<ArticleSwiperItem>:
+    id: swiper_item
+    size_hint_y: 0.9
+
+    MDRelativeLayout:
+        id: item_layout
+
+        FitImage:
+            pos_hint: {"top": 1}
+            size_hint_y: 0.55
+            source: root.image
+            radius: [20, 20, 0, 0]
+
+        # Creating a border for an image
+        MDBoxLayout:
+            size_hint_y: 0.55
+            pos_hint: {'top': 1}
+            radius: [20, 20, 0, 0]
+
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 1
+                Line:
+                    width: 1
+                    rounded_rectangle: self.x, self.y, self.width, self.height, 20, 20, 0, 0
+
+        MDRelativeLayout:
+            id: text_div
+            size_hint_y: 0.45
+            size_hint_x: None
+            width: swiper_item.width
+            pos_y: item_layout.y + item_layout.height
+            md_bg_color: 'white'
+            radius: [0, 0, 20, 20]
+
+            MDLabel:
+                size_hint_x: 0.6
+                pos_hint: {'center_y': 0.9}
+                pos: (text_div.x + text_div.width * 0.05, 0)
+                adaptive_height: True
+                halign: 'left'
+                text: root.source
+                font_size: '13sp'
+                font_name: 'fonts/Helvetica'
+
+            MDLabel:
+                id: author_label
+                adaptive_size: True
+                pos_hint: {'center_y': 0.79}
+                pos: (text_div.x + text_div.width * 0.05, 0)
+                text: root.author
+                font_size: '15sp'
+                font_name: 'fonts/Helvetica-light'
+
+            MDLabel:
+                id: devider
+                adaptive_size: True
+                pos_hint: {'center_y': 0.795}
+                pos: (author_label.x + author_label.width + 4, 0)
+                text: '|'
+                font_size: '15sp'
+                font_name: 'fonts/Helvetica-light'
+
+            MDLabel:
+                adaptive_size: True
+                pos_hint: {'center_y': 0.79}
+                pos: (devider.x + devider.width + 4, 0)
+                text: root.date
+                font_size: '15sp'
+                font_name: 'fonts/Helvetica-light'
+
+
+            MDLabel:
+                size_hint_x: 0.9
+                pos: (text_div.x + text_div.width * 0.05, author_label.y - self.height - 25)
+                adaptive_height: True
+                halign: 'left'
+                text: root.heading
+                font_size: '20sp'
+                line_height: 1.2
+                font_name: 'fonts/Helvetica'
+
+        # Creating a border for a text
+        MDBoxLayout:
+            size_hint_y: 0.45
+            size_hint_x: None
+            width: swiper_item.width
+            pos_y: item_layout.y + item_layout.height
+            radius: [0, 0, 20, 20]
+
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 1
+                Line:
+                    width: 1
+                    rounded_rectangle: self.x, self.y, self.width, self.height, 0, 0, 20, 20

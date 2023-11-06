@@ -1,0 +1,21 @@
+#:import SaveToFolderWordFoldersScreen screens.save_to_folder_word_folders_screen.save_to_folder_word_folders_screen.SaveToFolderWordFoldersScreen
+
+<SaveToFolderWordFoldersScreen>:
+    name: 'save_to_folder_word_folders_screen'
+
+    MDIconButton:
+        id: create_folder
+        icon: 'plus'
+        theme_icon_color: 'Custom'
+        icon_color: 'white'
+        md_bg_color: '#008080'
+        pos: root.width - self.width - 10, 20
+        on_release: root.create_new_folder()
+
+    MDIconButton:
+        icon: 'check'
+        theme_icon_color: 'Custom'
+        icon_color: 'white'
+        md_bg_color: '#008080'
+        pos: root.width - self.width - 10, create_folder.y + create_folder.height + 10
+        on_release: root.handle_add_word_to_current_folder()
