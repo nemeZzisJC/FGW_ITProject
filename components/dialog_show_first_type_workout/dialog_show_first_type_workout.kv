@@ -1,0 +1,62 @@
+#:import DialogShowFirstTypeWorkout components.dialog_show_first_type_workout.dialog_show_first_type_workout.DialogShowFirstTypeWorkout
+#:import DialogShowFirstTypeWorkoutContent components.dialog_show_first_type_workout.dialog_show_first_type_workout.DialogShowFirstTypeWorkoutContent
+
+<DialogShowFirstTypeWorkout>:
+    title: 'Workout information'
+    font_name: 'fonts/Helvetica'
+
+<DialogShowFirstTypeWorkoutContent>:
+    orientation: 'vertical'
+    adaptive_height: True
+    padding: [0, 0, 0, 10]
+    spacing: '15dp'
+
+    MDBoxLayout:
+        spacing: '5dp'
+        adaptive_height: True
+
+        MDLabel:
+            size_hint: None, None
+            size: self.texture_size
+            text_size: None, self.height
+            text: 'Workout name:'
+            font_name: 'fonts/Helvetica-Bold'
+            pos_hint: {'center_y': 0.5}
+            pos: 10, 0
+        
+        MDLabel:
+            text: root.workout_name
+            adaptive_height: True
+            font_name: 'fonts/Helvetica'
+
+    MDBoxLayout:
+        spacing: '5dp'
+        adaptive_height: True
+        padding: [0, 0, 0, 10]
+
+        MDLabel:
+            size_hint: None, None
+            size: self.texture_size
+            text_size: None, self.height
+            text: 'Number of flashcards:'
+            font_name: 'fonts/Helvetica-Bold'
+            pos_hint: {'center_y': 0.5}
+            pos: 10, 0
+        
+        MDLabel:
+            text: str(root.workout_cnt)
+            adaptive_height: True
+            font_name: 'fonts/Helvetica'
+
+    MDFillRoundFlatIconButton:
+        id: start_workout_button
+        text: 'Start this workout'
+        icon: 'lightning-bolt'
+        theme_text_color: "Custom"
+        text_color: "white"
+        font_name: 'fonts/Helvetica'
+        md_bg_color: '#008080'
+        theme_icon_color: "Custom"
+        icon_color: "white"
+        font_size: '17sp'
+        on_release: root.on_start_workout_button_click()

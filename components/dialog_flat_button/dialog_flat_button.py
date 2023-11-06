@@ -1,5 +1,6 @@
 from kivymd.uix.button import MDFlatButton
 
+
 class DialogFlatButton(MDFlatButton):
     text = ''
 

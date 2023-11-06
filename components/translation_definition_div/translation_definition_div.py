@@ -20,7 +20,8 @@ class TranslationDefinitionDiv(MDScreen):
     def on_touch_down(self, touch):
         root = App.get_running_app().root
         reading_screen = root.ids.reading_screen
-        if reading_screen.is_card_active and self.collide_point(touch.x, touch.y) and touch.y <= self.height * 0.3:
+        if reading_screen.is_card_active and self.collide_point(
+                touch.x, touch.y) and touch.y <= self.height * 0.3:
             super().on_touch_down(touch)
             return True
         else:
@@ -71,26 +72,27 @@ class TranslationDefinitionDiv(MDScreen):
 
     def on_save_to_folder_click(self):
         self.create_word_instance()
-        print(*["WORD", self.word_instance.word, "DEFINITION", self.word_instance.definition, "TRANSLATION", self.word_instance.translation])
         try:
             root = App.get_running_app().root
             db_connection = root.db_connection
             user = root.user
-            if db.is_word_already_saved(db_connection, user.id, self.word_instance):
+            if db.is_word_already_saved(
+                    db_connection, user.id, self.word_instance):
                 raise WordAlreadySaved()
             dialog = DialogEditWordInfo(word=self.word_instance)
             dialog.open()
         except WordWithoutTranslationDefinition:
-            print("YOU HAVE TO WAIT UNTIL BOTH TRANLSATION AND DEFINITION LOAD")
-            dialog = DialogOkayButton(title='No definition or translation!', text='When saving the word or phrase both definition and translation should be present.')
+            dialog = DialogOkayButton(
+                title='No definition or translation!',
+                text='When saving the word or phrase both definition and translation should be present.')
         except WordAlreadySaved:
-            print('THE WORD IS ALREADY SAVED')
-            dialog = DialogOkayButton(title='This word or phrase is already saved!', text='If you want to change its translation or definition, please head to the dictionaries section.')
+            dialog = DialogOkayButton(
+                title='This word or phrase is already saved!',
+                text='If you want to change its translation or definition, please head to the dictionaries section.')
             dialog.open()
 
     def on_fast_save_click(self):
         self.create_word_instance()
-        print(*["WORD", self.word_instance.word, "DEFINITION", self.word_instance.definition, "TRANSLATION", self.word_instance.translation])
         self.confirmation_dialog = MDDialog(
             title='Are you sure you want to fast save?',
             buttons=[
@@ -120,17 +122,19 @@ class TranslationDefinitionDiv(MDScreen):
             )
             success_sb.md_bg_color = 'white'
             success_sb.size_hint_x = (
-            window_width - (success_sb.snackbar_x * 2)
+                window_width - (success_sb.snackbar_x * 2)
             ) / window_width
             success_sb.snackbar_animation_dir = 'Top'
             success_sb.open()
             Clock.schedule_once(lambda dt: success_sb.dismiss(), 1.5)
         except WordWithoutTranslationDefinition:
-            print("YOU HAVE TO WAIT UNTIL BOTH TRANLSATION AND DEFINITION LOAD")
-            dialog = DialogOkayButton(title='No definition or translation!', text='When saving the word or phrase both definition and translation should be present.')
+            dialog = DialogOkayButton(
+                title='No definition or translation!',
+                text='When saving the word or phrase both definition and translation should be present.')
         except WordAlreadySaved:
-            print('THE WORD IS ALREADY SAVED')
-            dialog = DialogOkayButton(title='This word or phrase is already saved!', text='If you want to change its translation or definition, please head to the dictionaries section.')
+            dialog = DialogOkayButton(
+                title='This word or phrase is already saved!',
+                text='If you want to change its translation or definition, please head to the dictionaries section.')
             dialog.open()
 
     def on_slide_card_down_click(self):

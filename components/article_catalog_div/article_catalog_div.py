@@ -2,11 +2,12 @@ from kivymd.uix.card import MDCard
 from kivy.app import App
 from kivy.properties import StringProperty
 
+
 class ArticleCatalogDiv(MDCard):
     heading = StringProperty()
     image = StringProperty()
     source = StringProperty()
-    date = StringProperty() 
+    date = StringProperty()
     author = StringProperty()
     comment = StringProperty()
 

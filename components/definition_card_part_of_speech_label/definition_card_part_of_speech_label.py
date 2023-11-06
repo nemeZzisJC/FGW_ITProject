@@ -1,6 +1,7 @@
 from kivymd.uix.label import MDLabel
 from kivy.properties import StringProperty
 
+
 class DefinitionCardPartOfSpeechLabel(MDLabel):
     part_of_speech = StringProperty()
 

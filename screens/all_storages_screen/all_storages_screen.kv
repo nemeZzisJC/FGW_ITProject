@@ -38,3 +38,18 @@
         icon_color: "white"
         font_size: '18sp'
         md_bg_color: '#008080'
+        on_release: root.on_flashcards_storage_click()
+
+    MDFillRoundFlatIconButton:
+        id: workouts_storage
+        pos: 40, flashcard_storage.y - self.height - 20
+        text: 'Workouts'
+        theme_text_color: "Custom"
+        text_color: "white"
+        icon: 'arm-flex'  
+        font_name: 'fonts/Helvetica'
+        theme_icon_color: "Custom"
+        icon_color: "white"
+        font_size: '18sp'
+        md_bg_color: '#008080'
+        on_release: root.on_workouts_storage_click()

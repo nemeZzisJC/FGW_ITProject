@@ -1,7 +1,7 @@
+from kivymd.uix.boxlayout import MDBoxLayout
+from kivy.properties import StringProperty
 import os
 os.environ['KIVY_IMAGE'] = 'pil'
-from kivy.properties import StringProperty
-from kivymd.uix.boxlayout import MDBoxLayout
 
 
 class ElementMainHeadingCommentImageWithComment(MDBoxLayout):
@@ -16,5 +16,6 @@ class ElementMainHeadingCommentImageWithComment(MDBoxLayout):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.ids.main_image_with_comment_heading_text.update_text(self.heading_text)
+        self.ids.main_image_with_comment_heading_text.update_text(
+            self.heading_text)
         self.ids.comment.update_text(self.comment)

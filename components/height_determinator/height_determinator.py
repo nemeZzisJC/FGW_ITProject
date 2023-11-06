@@ -1,6 +1,7 @@
 from kivy.uix.label import Label
 from kivy.properties import NumericProperty
 
+
 class HeightDeterminator(Label):
     text_height = NumericProperty(0)
 
